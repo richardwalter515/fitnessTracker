@@ -1,11 +1,23 @@
 const express = require("express");
 const app = express();
+const db = require('../models')
 
 // routes
-app.get("/api/workouts", (req, res) => {
-    Workout.create({}).then(dbWorkout => {res.json(dbWorkout)})
+app.get("/workouts", (req, res) => {
+    db.Workout.find({}).then((err, dbWorkout) => {
+      if (err) {
+        console.log('THERE WAS AN ERROR!!!!! ', err)
+        res.json(err)
+      }
+       res.json(dbWorkout)
+      })
     //catching errors if it's 500, printing in JSON
-    .catch(err => res.status(500).json(err))
+    
+});
+
+app.get("/workouts/range", (req, res) => {
+  res.json({ text: 'hello world'})
+  // go to database and get the last 7 days of workouts
 });
 
 //post note
