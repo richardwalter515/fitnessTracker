@@ -6,7 +6,7 @@ const db = require('../models')
 app.get("/workouts", (req, res) => {
     db.Workout.find({}).then((err, dbWorkout) => {
       if (err) {
-        console.log('THERE WAS AN ERROR!!!!! ', err)
+        console.log('THERE WAS AN ERROR! ', err)
         res.json(err)
       }
        res.json(dbWorkout)
@@ -15,30 +15,36 @@ app.get("/workouts", (req, res) => {
     
 });
 
+//add workout
+app.post("/workouts", (req, res) => {
+  db.Workout.create({}).then((err, dbWorkout) => {
+    if (err) {
+      console.log('THERE WAS AN ERROR! ', err)
+      res.json(err)
+    }
+     res.json(dbWorkout)
+    })
+});
+
+app.put("/workouts/:id", ({body, params}, res) => {
+  db.Workout.findByIdAndUpdate(params.id, { $push: { exercises: body } }, {runValidators: true}).then((err, dbWorkout) => {
+    if (err) {
+      console.log('THERE WAS AN ERROR! ', err)
+      res.json(err)
+    }
+     res.json(dbWorkout)
+    })
+});
+
+// go to database and get the last 7 days of workouts
 app.get("/workouts/range", (req, res) => {
-  res.json({ text: 'hello world'})
-  // go to database and get the last 7 days of workouts
+  db.Workout.find({ day: {$gt: "2021-01-08", $lt: "2021-01-15"} }).then((err, dbWorkout) => {
+    if (err) {
+      console.log('THERE WAS AN ERROR! ', err)
+      res.json(err)
+    }
+     res.json(dbWorkout)
+    })
 });
-
-//post note
-
-app.post("/notes", function(req, res) {
-  store
-  .addNotes(req.body)
-  .then((note) => res.json(note))
-  .catch(err => res.status(500).json(err))
-});
-
-//delete note
-app.delete("/notes/:id", function(req, res) {
-  const id = req.params.id;
-  store
-  .removeNotes(id)
-  .then((note) => res.json(note))
-  .catch(err => {
-    console.log("error", err);
-    res.status(500).json(err)
-  }
-)});
 
 module.exports = app;
