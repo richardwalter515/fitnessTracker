@@ -1,12 +1,12 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const apiroutes = require("./routes/apiRoutes");
-const htmlroutes = require("./routes/htmlRoutes");
+const apiroutes = require("./Develop/routes/apiRoutes");
+const htmlroutes = require("./Develop/routes/htmlRoutes");
 
 const PORT = process.env.PORT || 3000;
 
-const User = require("./models");
+const User = require("./Develop/models");
 
 const app = express();
 
