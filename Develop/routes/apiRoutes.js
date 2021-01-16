@@ -6,7 +6,6 @@ const db = require('../models')
 app.get("/workouts", (req, res) => {
     db.Workout.find({}).then((err, dbWorkout) => {
       if (err) {
-        console.log('THERE WAS AN ERROR! ', err)
         res.json(err)
       }
        res.json(dbWorkout)

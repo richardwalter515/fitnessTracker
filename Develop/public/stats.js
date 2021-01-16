@@ -191,6 +191,7 @@ function calculateTotalWeight(data) {
   return totals;
 }
 
+
 function workoutNames(data) {
   let workouts = [];
 
