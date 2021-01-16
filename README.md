@@ -20,7 +20,7 @@ This Fitness Tracker allows the user to create and keep track of new workouts, o
 ## Usage <a name="usage"></a>
 To use, navigate to the app in your browser and click new workout!
 
-You can find the app [here](https://drive.google.com/file/d/1EvBGva4CR6EjPJhpuVfuT9k55SW1yCVG/view).
+You can find the app [here](https://secure-hollows-10632.herokuapp.com/).
 
 
 ## Questions <a name="questions"></a>
